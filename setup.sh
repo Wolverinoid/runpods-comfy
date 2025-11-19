@@ -74,4 +74,11 @@ echo "Installing Python packages..."
 pip install tqdm
 pip install boto3
 
+echo "Downloading s3_download.py script..."
+wget -O /app/s3_download.py https://raw.githubusercontent.com/Wolverinoid/runpods-comfy/refs/heads/main/s3_download.py
+chmod +x /app/s3_download.py
+
 echo "Setup complete!"
+
+echo "Keeping container alive..."
+tail -f /dev/null
