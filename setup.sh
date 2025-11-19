@@ -88,6 +88,12 @@ deactivate
 
 python3.11 -m venv --upgrade venv
 
+echo "Commenting out lines 111, 112, 114, 115 in start.sh..."
+sed -i '111s/^/#/' /app/start.sh
+sed -i '112s/^/#/' /app/start.sh
+sed -i '114s/^/#/' /app/start.sh
+sed -i '115s/^/#/' /app/start.sh
+
 echo "Setup complete!"
 
 ./start.sh
