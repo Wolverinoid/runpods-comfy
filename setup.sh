@@ -78,7 +78,7 @@ echo "Downloading s3_download.py script..."
 wget -O /app/s3_download.py https://raw.githubusercontent.com/Wolverinoid/runpods-comfy/refs/heads/main/s3_download.py
 chmod +x /app/s3_download.py
 
-/app/installvenv/bin/python /app/s3_download.py runpopds/comfy.tar.gz /app/ --workers 12 --chunk-size 64
+/app/installvenv/bin/python /app/s3_download.py runpods/comfy.tar.gz /app/ --workers 12 --chunk-size 64
 
 cd /app
 
