@@ -22,50 +22,51 @@ set -e
 
 export_env_vars
 
-echo "Updating package lists..."
-apt-get update
-
-echo "Installing packages..."
-apt-get install -y \
-    git \
-    make \
-    build-essential \
-    libssl-dev \
-    zlib1g-dev \
-    libbz2-dev \
-    libreadline-dev \
-    libsqlite3-dev \
-    wget \
-    curl \
-    llvm \
-    libncursesw5-dev \
-    xz-utils \
-    tk-dev \
-    libxml2-dev \
-    libxmlsec1-dev \
-    libffi-dev \
-    liblzma-dev \
-    git-lfs \
-    ffmpeg \
-    libsm6 \
-    libxext6 \
-    cmake \
-    libgl1-mesa-glx \
-    libopengl0 \
-    python3-opengl
-
-echo "Cleaning up apt cache..."
-rm -rf /var/lib/apt/lists/*
-
-echo "Installing git-lfs..."
-git lfs install
-
-echo "Creating /app directory..."
-mkdir -p /app
-
 if [ -f "/app/proxy.py" ]; then
     echo "/app/proxy.py exists, skipping download and unpack steps..."
 else
+    
+    echo "Updating package lists..."
+    apt-get update
+    
+    echo "Installing packages..."
+    apt-get install -y \
+        git \
+        make \
+        build-essential \
+        libssl-dev \
+        zlib1g-dev \
+        libbz2-dev \
+        libreadline-dev \
+        libsqlite3-dev \
+        wget \
+        curl \
+        llvm \
+        libncursesw5-dev \
+        xz-utils \
+        tk-dev \
+        libxml2-dev \
+        libxmlsec1-dev \
+        libffi-dev \
+        liblzma-dev \
+        git-lfs \
+        ffmpeg \
+        libsm6 \
+        libxext6 \
+        cmake \
+        libgl1-mesa-glx \
+        libopengl0 \
+        python3-opengl
+    
+    echo "Cleaning up apt cache..."
+    rm -rf /var/lib/apt/lists/*
+    
+    echo "Installing git-lfs..."
+    git lfs install
+    
+    echo "Creating /app directory..."
+    mkdir -p /app
+    
     echo "Creating Python virtual environment..."
     cd /app
     python3.11 -m venv installvenv
