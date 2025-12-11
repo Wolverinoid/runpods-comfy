@@ -104,6 +104,7 @@ fi
 
 echo "Setup complete!"
 
+cd /app
 ./start.sh
 
 #echo "Keeping container alive..."
