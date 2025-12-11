@@ -63,30 +63,38 @@ git lfs install
 echo "Creating /app directory..."
 mkdir -p /app
 
-echo "Creating Python virtual environment..."
-cd /app
-python3.11 -m venv installvenv
+if [ -f "/app/proxy.py" ]; then
+    echo "/app/proxy.py exists, skipping download and unpack steps..."
+else
+    echo "Creating Python virtual environment..."
+    cd /app
+    python3.11 -m venv installvenv
 
-echo "Activating virtual environment..."
-source installvenv/bin/activate
+    echo "Activating virtual environment..."
+    source installvenv/bin/activate
 
-echo "Installing Python packages..."
-pip install tqdm
-pip install boto3
+    echo "Installing Python packages..."
+    pip install tqdm
+    pip install boto3
 
-echo "Downloading s3_download.py script..."
-wget -O /app/s3_download.py https://raw.githubusercontent.com/Wolverinoid/runpods-comfy/refs/heads/main/s3_download.py
-chmod +x /app/s3_download.py
+    echo "Downloading s3_download.py script..."
+    wget -O /app/s3_download.py https://raw.githubusercontent.com/Wolverinoid/runpods-comfy/refs/heads/main/s3_download.py
+    chmod +x /app/s3_download.py
 
-/app/installvenv/bin/python /app/s3_download.py runpods/comfy-test.tar.gz /app/ --workers 12 --chunk-size 64
+    /app/installvenv/bin/python /app/s3_download.py runpods/comfy-test.tar.gz /app/ --workers 12 --chunk-size 64
 
-cd /app
+    cd /app
 
-tar -zxvf comfy-test.tar.gz
+    tar -zxvf comfy-test.tar.gz
 
-deactivate
+    deactivate
 
-python3.11 -m venv --upgrade venv
+    rm comfy-test.tar.gz
+    
+    python3.11 -m venv --upgrade venv
+fi
+
+
 
 #echo "Commenting out lines 111, 112, 114, 115 in start.sh..."
 #sed -i '111s/^/#/' /app/start.sh
