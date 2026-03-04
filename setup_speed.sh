@@ -41,7 +41,6 @@ else
         libsqlite3-dev \
         wget \
         curl \
-        awscli \
         llvm \
         libncursesw5-dev \
         xz-utils \
@@ -68,6 +67,9 @@ else
     echo "Creating /app directory..."
     mkdir -p /app
     
+    echo "Installing AWS CLI via pip..."
+    pip install awscli
+
     echo "Downloading comfy-latest.tar.gz from S3..."
     mkdir -p /app
     AWS_ACCESS_KEY_ID="${RUNPOD_S3_ACCESS_KEY_ID}" \
